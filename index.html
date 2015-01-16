@@ -4,7 +4,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="UE4GitPlugin : GitSourceControl UE4 Plugin (beta 0.6.0 for UE4.6)">
+    <meta name="description" content="UE4GitPlugin : GitSourceControl UE4 Plugin (beta 0.6.2 for UE4.6)">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/SRombauts/UE4GitPlugin">View on GitHub</a>
 
           <h1 id="project_title">UE4GitPlugin</h1>
-          <h2 id="project_tagline">GitSourceControl UE4 Plugin (beta 0.6.0 for UE4.6)</h2>
+          <h2 id="project_tagline">GitSourceControl UE4 Plugin (beta 0.6.2 for UE4.6)</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/SRombauts/UE4GitPlugin/zipball/master">Download this project as a .zip file</a>
@@ -32,16 +32,16 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h2>
-<a name="unreal-engine-4-git-source-control-plugin" class="anchor" href="#unreal-engine-4-git-source-control-plugin"><span class="octicon octicon-link"></span></a>Unreal Engine 4 Git Source Control Plugin</h2>
+<a id="unreal-engine-4-git-source-control-plugin" class="anchor" href="#unreal-engine-4-git-source-control-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unreal Engine 4 Git Source Control Plugin</h2>
 
 <p>UE4GitPlugin is a simple Git Source Control Plugin for Unreal Engine 4.6</p>
 
 <h3>
-<a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status</h3>
+<a id="status" class="anchor" href="#status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Status</h3>
 
-<p><a href="https://github.com/SRombauts/UE4GitPlugin/releases">Download the last release</a></p>
+<p><a href="https://github.com/SRombauts/UE4GitPlugin/releases">Download the latest release</a></p>
 
-<p>Beta version 0.6.0:</p>
+<p>Beta version 0.6.2:</p>
 
 <ul>
 <li>initialize a new Git local repository ('git init') to manage your UE4 Game Project.</li>
@@ -55,39 +55,101 @@
 <li>show current branch name in status text</li>
 </ul>
 
-<p>What <em>cannot</em> be done presently:</p>
+<h4>
+<a id="what-cannot-be-done-presently-todo-list-for-v10-ordered-by-priority" class="anchor" href="#what-cannot-be-done-presently-todo-list-for-v10-ordered-by-priority" aria-hidden="true"><span class="octicon octicon-link"></span></a>What <em>cannot</em> be done presently (TODO list for v1.0, ordered by priority):</h4>
 
 <ul>
-<li>configure user name &amp; email ('git config user.name' &amp; git config user.email')</li>
-<li>migrate an asset should add it to the destination project</li>
+<li>solve a merge conflict</li>
+<li>merge blueprints</li>
+<li>add localisation for git specific messages</li>
+<li>migrate an asset should add it to the destination project if also under Git (needs management of 'out of tree' files)</li>
+<li>displaying states of 'Engine' assets (also needs management of 'out of tree' files)</li>
+<li>tags: implement ISourceControlLabel to manage git tags</li>
+<li>.uproject file state si not visible in the current Editor</li>
+<li>Branch is not in the current Editor workflow (but on Epic Roadmap)</li>
 <li>Pull/Fetch/Push are not in the current Editor workflow</li>
-<li>Branch and Merge are not in the current Editor workflow (but on Epic Roadmap)</li>
-<li>Amend a commit &amp; Add file to Index are not in the current Editor workflow</li>
+<li>Amend a commit is not in the current Editor workflow</li>
+<li>configure user name &amp; email ('git config user.name' &amp; git config user.email')</li>
 </ul>
 
-<p>Wishlist:</p>
+<h4>
+<a id="known-issues" class="anchor" href="#known-issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Known issues:</h4>
+
+<ul>
+<li>the Editor does not show deleted files (only when deleted externaly?)</li>
+<li>the Editor does not show missing files</li>
+<li>issue #22: A Move/Rename leaves a redirector file behind</li>
+<li>issue #11: Add the "Resolve" operation introduced in Editor 4.3</li>
+<li>improve the 'Init' window text, hide it if connection is already done, auto connect</li>
+<li>reverting an asset does not seem to update content in Editor! Issue in Editor?</li>
+<li>file history show Revision as signed integer instead of hexadecimal SHA1</li>
+<li>file history does not report file size</li>
+<li>standard Editor commit dialog ask if user wants to "Keep Files Checked Out" =&gt; no use for Git or Mercurial CanCheckOut()==false</li>
+<li>Windows only (64 bits) -&gt; Mac compiles but needs testing/debugging (Linux source control is not supported by Editor)</li>
+</ul>
+
+<h4>
+<a id="wishlist-after-v10" class="anchor" href="#wishlist-after-v10" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wishlist (after v1.0):</h4>
 
 <ul>
 <li><a href="https://github.com/SRombauts/UE4GitPlugin/issues/1">git-annexe and/or git-media - #1 feature request</a></li>
 </ul>
 
-<p>Known issues:</p>
+<h4>
+<a id="in-code-todo-list-internal-roadmap" class="anchor" href="#in-code-todo-list-internal-roadmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>In-code TODO list (internal roadmap):</h4>
 
 <ul>
-<li>issue #10: Add the "Copy" operation replacing "Delete" + "Add"</li>
-<li>issue #11: Add the "Resolve" operation introduced in Editor 4.3</li>
-<li>reverting an asset does not seem to update content in Editor! Issue in Editor?</li>
-<li>renaming an asset does not seem to be handled correctly by the Editor...</li>
-<li>renamed file may not be tracked correctly (not yet tested, see above)</li>
-<li>file history does not report file size</li>
-<li>Windows only (64 bits)</li>
+<li><p>FGitConnectWorker::Execute (While project not in Git source control)
+Improve error message "You should check out a working copy..."
+=&gt; double error message (and in reverse order) with "Project is not part of a Git working copy"</p></li>
+<li><p>FGitResolveWorker (GitSourceControlOperations.h)
+git add to mark a conflict as resolved</p></li>
+<li><p>FGitSourceControlRevision::GetBranchSource() const
+if this revision was copied from some other revision, then that source revision should
+  be returned here (this should be determined when history is being fetched)</p></li>
+<li><p>FGitSourceControlState::GetBaseRevForMerge()
+get revision of the merge-base (<a href="https://www.kernel.org/pub/software/scm/git/docs/git-merge-base.html">https://www.kernel.org/pub/software/scm/git/docs/git-merge-base.html</a>)</p></li>
+<li><p>FGitConnectWorker::Execute()
+popup to propose to initialize the git repository "git init + .gitignore"</p></li>
+<li><p>FGitSyncWorker (GitSourceControlOperations.h)
+git fetch remote(s) to be able to show files not up-to-date with the serveur</p></li>
+<li><p>FGitSourceControlState::IsCurrent() const
+check the state of the HEAD versus the state of tracked branch on remote</p></li>
+<li><p>FGitSourceControlRevision::GetFileSize() const
+git log does not give us the file size, but we could run a specific command</p></li>
+<li><p>GitSourceControlUtils::CheckGitAvailability
+also check Git config user.name &amp; user.email</p></li>
+</ul>
+
+<p>Windows:</p>
+
+<ul>
+<li>GitSourceControlUtils::FindGitBinaryPath
+use the Windows registry to find Git</li>
+</ul>
+
+<p>Mac:</p>
+
+<ul>
+<li>GitSourceControlUtils::RunCommandInternalRaw
+Specifying the working copy (the root) of the git repository (before the command itself)
+  does not work in UE4.1 on Mac if there is a space in the path ("/Users/xxx/Unreal Project/MyProject")</li>
+</ul>
+
+<p>Bug reports?</p>
+
+<ul>
+<li><p>FGitSourceControlRevision::Get
+Bug report: a counter is needed to avoid overlapping files; temp files are not (never?) released by Editor!</p></li>
+<li><p>GitSourceControlUtils::UpdateCachedStates
+// State-&gt;TimeStamp = InState.TimeStamp; // Bug report: Workaround a bug with the Source Control Module not updating file state after a "Save"</p></li>
 </ul>
 
 <h3>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h3>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started</h3>
 
 <h4>
-<a name="install-git" class="anchor" href="#install-git"><span class="octicon octicon-link"></span></a>Install Git</h4>
+<a id="install-git" class="anchor" href="#install-git" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install Git</h4>
 
 <p>Under Windows 64bits, you could either:</p>
 
@@ -98,7 +160,7 @@ inside "/Engine/Binaries/ThirdParty/git/Win32".</li>
 </ul>
 
 <h4>
-<a name="initialize-your-game-project-directory-with-git" class="anchor" href="#initialize-your-game-project-directory-with-git"><span class="octicon octicon-link"></span></a>Initialize your Game Project directory with Git</h4>
+<a id="initialize-your-game-project-directory-with-git" class="anchor" href="#initialize-your-game-project-directory-with-git" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initialize your Game Project directory with Git</h4>
 
 <p>Use your favorite Git program to initialize and manage your whole game project directory.
 For instance:</p>
@@ -107,14 +169,14 @@ For instance:</p>
 </code></pre>
 
 <h4>
-<a name="install-this-git-plugin" class="anchor" href="#install-this-git-plugin"><span class="octicon octicon-link"></span></a>Install this Git Plugin</h4>
+<a id="install-this-git-plugin" class="anchor" href="#install-this-git-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install this Git Plugin</h4>
 
 <p>There are a few ways to use a Plugin with UE4.</p>
 
 <p>See also the <a href="https://docs.unrealengine.com/latest/INT/Programming/Plugins/index.html">Plugins official Documentation</a></p>
 
 <h5>
-<a name="within-a-standard-installed-unreal-engine-binary-release" class="anchor" href="#within-a-standard-installed-unreal-engine-binary-release"><span class="octicon octicon-link"></span></a>Within a standard installed Unreal Engine binary release:</h5>
+<a id="within-a-standard-installed-unreal-engine-binary-release" class="anchor" href="#within-a-standard-installed-unreal-engine-binary-release" aria-hidden="true"><span class="octicon octicon-link"></span></a>Within a standard installed Unreal Engine binary release:</h5>
 
 <p>You can simply <a href="https://github.com/SRombauts/UE4GitPlugin/releases">download a ZIP of source code from the latest release</a>,
 and unzip it under the "Plugins" directory of the Engine, beside PerforceSourceControl and SubversionSourceControl:</p>
@@ -124,11 +186,10 @@ and unzip it under the "Plugins" directory of the Engine, beside PerforceSourceC
 
 <p>Or you can clone the plugin repository, and as the name of the destination directory is unimportant, its just:</p>
 
-<div class="highlight highlight-bash"><pre>git clone https://github.com/SRombauts/UE4GitPlugin.git
-</pre></div>
+<div class="highlight highlight-bash"><pre>git clone https://github.com/SRombauts/UE4GitPlugin.git</pre></div>
 
 <h5>
-<a name="within-an-unreal-engine-source-release-from-github" class="anchor" href="#within-an-unreal-engine-source-release-from-github"><span class="octicon octicon-link"></span></a>Within an Unreal Engine source release from GitHub:</h5>
+<a id="within-an-unreal-engine-source-release-from-github" class="anchor" href="#within-an-unreal-engine-source-release-from-github" aria-hidden="true"><span class="octicon octicon-link"></span></a>Within an Unreal Engine source release from GitHub:</h5>
 
 <p>Donwload and unzip or clone the plugin repository under the "Plugins" directory of the Engine, beside PerforceSourceControl and SubversionSourceControl:</p>
 
@@ -137,11 +198,10 @@ and unzip it under the "Plugins" directory of the Engine, beside PerforceSourceC
 
 <p>Take care to use <strong>GitSourceControl</strong> as the name of the destination directory (same name as the "GitSourceControl.uplugin" file):</p>
 
-<div class="highlight highlight-bash"><pre>git clone https://github.com/SRombauts/UE4GitPlugin.git GitSourceControl
-</pre></div>
+<div class="highlight highlight-bash"><pre>git clone https://github.com/SRombauts/UE4GitPlugin.git GitSourceControl</pre></div>
 
 <h5>
-<a name="within-your-game-project-only" class="anchor" href="#within-your-game-project-only"><span class="octicon octicon-link"></span></a>Within your Game Project only</h5>
+<a id="within-your-game-project-only" class="anchor" href="#within-your-game-project-only" aria-hidden="true"><span class="octicon octicon-link"></span></a>Within your Game Project only</h5>
 
 <p>Alternatively, you could choose to install the plugin into a subfolder or your Game Project "Plugins" directory:</p>
 
@@ -151,7 +211,7 @@ and unzip it under the "Plugins" directory of the Engine, beside PerforceSourceC
 <p>In this case, you will obviously only be able to use the plugin within this project.</p>
 
 <h4>
-<a name="enable-git-plugin-within-the-editor" class="anchor" href="#enable-git-plugin-within-the-editor"><span class="octicon octicon-link"></span></a>Enable Git Plugin within the Editor</h4>
+<a id="enable-git-plugin-within-the-editor" class="anchor" href="#enable-git-plugin-within-the-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Enable Git Plugin within the Editor</h4>
 
 <p>Launch the UE4 Editor, then open:</p>
 
@@ -161,7 +221,7 @@ and unzip it under the "Plugins" directory of the Engine, beside PerforceSourceC
 <p>click Enable and restart the Editor.</p>
 
 <h4>
-<a name="activate-git-source-control-for-your-game-project" class="anchor" href="#activate-git-source-control-for-your-game-project"><span class="octicon octicon-link"></span></a>Activate Git Source Control for your Game Project</h4>
+<a id="activate-git-source-control-for-your-game-project" class="anchor" href="#activate-git-source-control-for-your-game-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Activate Git Source Control for your Game Project</h4>
 
 <p>Load your Game Project, then open:</p>
 
@@ -171,18 +231,18 @@ and unzip it under the "Plugins" directory of the Engine, beside PerforceSourceC
 <p>See also the <a href="https://docs.unrealengine.com/latest/INT/Engine/UI/SourceControl/index.html">Source Control official Documentation</a></p>
 
 <h3>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
 
-<p>Copyright (c) 2014 Sébastien Rombauts (<a href="mailto:sebastien.rombauts@gmail.com">sebastien.rombauts@gmail.com</a>)</p>
+<p>Copyright (c) 2014-2015 Sebastien Rombauts (<a href="mailto:sebastien.rombauts@gmail.com">sebastien.rombauts@gmail.com</a>)</p>
 
 <p>Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
 or copy at <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a>)</p>
 
 <h2>
-<a name="how-to-contribute" class="anchor" href="#how-to-contribute"><span class="octicon octicon-link"></span></a>How to contribute</h2>
+<a id="how-to-contribute" class="anchor" href="#how-to-contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to contribute</h2>
 
 <h3>
-<a name="github-website" class="anchor" href="#github-website"><span class="octicon octicon-link"></span></a>GitHub website</h3>
+<a id="github-website" class="anchor" href="#github-website" aria-hidden="true"><span class="octicon octicon-link"></span></a>GitHub website</h3>
 
 <p>The most efficient way to help and contribute to this wrapper project is to
 use the tools provided by GitHub:</p>
@@ -194,12 +254,12 @@ use the tools provided by GitHub:</p>
 </ul>
 
 <h3>
-<a name="contact" class="anchor" href="#contact"><span class="octicon octicon-link"></span></a>Contact</h3>
+<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h3>
 
 <p>You can also email me directly, I will answer any questions and requests.</p>
 
 <h3>
-<a name="coding-style-guidelines" class="anchor" href="#coding-style-guidelines"><span class="octicon octicon-link"></span></a>Coding Style Guidelines</h3>
+<a id="coding-style-guidelines" class="anchor" href="#coding-style-guidelines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coding Style Guidelines</h3>
 
 <p>The source code follow the UnreaEngine official <a href="https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard/index.html">Coding Standard</a> :</p>
 
@@ -207,22 +267,18 @@ use the tools provided by GitHub:</p>
 <li>CamelCase naming convention, with a prefix letter to differentiate classes ('F'), interfaces ('I'), templates ('T')</li>
 <li>files (.cpp/.h) are named like the class they contains</li>
 <li>Doxygen comments, documentation is located with declaration, on headers</li>
-<li>Use portable common features of C++11 like nullptr, auto, range based for, override macro</li>
+<li>Use portable common features of C++11 like nullptr, auto, range based for, override keyword</li>
 <li>Braces on their own line</li>
 <li>Tabs to indent code, with a width of 4 characters</li>
 </ul>
 
 <h2>
-<a name="see-also" class="anchor" href="#see-also"><span class="octicon octicon-link"></span></a>See also</h2>
+<a id="see-also" class="anchor" href="#see-also" aria-hidden="true"><span class="octicon octicon-link"></span></a>See also</h2>
 
 <ul>
-<li><a href="https://github.com/enlight/ue4-hg-plugin">ue4-hg-plugin for Mercurial (and bigfiles)</a></li>
-<li><a href="https://github.com/ufna/VaOcean">VaOcean, the ocean surface simulation plugin for Unreal Engine 4</a></li>
-<li><a href="https://github.com/ufna/VaQuoleUI">VaQuoleUI is the Web UI framework plugin for Unreal Engine 4</a></li>
-<li><p><a href="https://github.com/ufna/VaRest">VaRest is the plugin for Unreal Engine 4 that makes REST server communications easier to use</a></p></li>
-<li><p><a href="https://github.com/mitchemmc/UE4FirstPersonVRTemplate">A first person template for unreal engine 4 focused on VR and use with the Oculus Rift</a></p></li>
-<li><p><a href="https://github.com/mitchemmc/UE4SpaceShooterVRTemplate">Template focused on a space shooter cockpit style game specifically designed for VR</a></p></li>
+<li><a href="https://wiki.unrealengine.com/Git_source_control_(Tutorial)">Git Source Control Tutorial on the Wikis</a></li>
 <li><p><a href="http://srombauts.github.com/UE4GitPlugin">UE4 Git Plugin website</a></p></li>
+<li><p><a href="https://github.com/enlight/ue4-hg-plugin">ue4-hg-plugin for Mercurial (and bigfiles)</a></p></li>
 </ul>
       </section>
     </div>
