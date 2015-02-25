@@ -4,7 +4,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="UE4GitPlugin : GitSourceControl UE4 Plugin (beta 0.6.2 for UE4.6)">
+    <meta name="description" content="UE4GitPlugin : GitSourceControl UE4 Plugin (beta, now integrated into UE4.7)">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/SRombauts/UE4GitPlugin">View on GitHub</a>
 
           <h1 id="project_title">UE4GitPlugin</h1>
-          <h2 id="project_tagline">GitSourceControl UE4 Plugin (beta 0.6.2 for UE4.6)</h2>
+          <h2 id="project_tagline">GitSourceControl UE4 Plugin (beta, now integrated into UE4.7)</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/SRombauts/UE4GitPlugin/zipball/master">Download this project as a .zip file</a>
@@ -34,14 +34,14 @@
         <h2>
 <a id="unreal-engine-4-git-source-control-plugin" class="anchor" href="#unreal-engine-4-git-source-control-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unreal Engine 4 Git Source Control Plugin</h2>
 
-<p>UE4GitPlugin is a simple Git Source Control Plugin for Unreal Engine 4.6</p>
+<p>UE4GitPlugin is a simple Git Source Control Plugin for Unreal Engine - It has been integrated in UE4.7 in "Beta".</p>
 
 <h3>
 <a id="status" class="anchor" href="#status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Status</h3>
 
-<p><a href="https://github.com/SRombauts/UE4GitPlugin/releases">Download the latest release</a></p>
+<p>This Git Source Control Plugin is now part of the default Unreal Engine 4.7</p>
 
-<p>Beta version 0.6.2:</p>
+<p>Beta version 0.6.3:</p>
 
 <ul>
 <li>initialize a new Git local repository ('git init') to manage your UE4 Game Project.</li>
@@ -82,7 +82,6 @@
 <li>issue #11: Add the "Resolve" operation introduced in Editor 4.3</li>
 <li>improve the 'Init' window text, hide it if connection is already done, auto connect</li>
 <li>reverting an asset does not seem to update content in Editor! Issue in Editor?</li>
-<li>file history show Revision as signed integer instead of hexadecimal SHA1</li>
 <li>file history does not report file size</li>
 <li>standard Editor commit dialog ask if user wants to "Keep Files Checked Out" =&gt; no use for Git or Mercurial CanCheckOut()==false</li>
 <li>Windows only (64 bits) -&gt; Mac compiles but needs testing/debugging (Linux source control is not supported by Editor)</li>
