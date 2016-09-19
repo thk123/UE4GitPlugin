@@ -62,10 +62,12 @@ static bool RunCommandInternalRaw(const FString& InCommand, const FString& InPat
 		FString RepositoryRoot = InRepositoryRoot;
 
 		// Detect a "migrate asset" scenario (a "git add" command is applied to files outside the current project)
-		if ( (InFiles.Num() > 0) && (!InFiles[0].StartsWith(InRepositoryRoot)) )
+		// TODO: I get a load of errors as this is being incorrectly activated due to the path being relative to the RepositoryRoot already
+		if ( (InFiles.Num() > 0) && (!InFiles[0].StartsWith(InRepositoryRoot)))
 		{
 			// in this case, find the git repository (if any) of the destination Project
-			FindRootDirectory(FPaths::GetPath(InFiles[0]), RepositoryRoot);
+			// Disabling this as don't require functionality but is breaking funcitonality we do need
+			//FindRootDirectory(FPaths::GetPath(InFiles[0]), RepositoryRoot);
 		}
 
 		// Specify the working copy (the root) of the git repository (before the command itself)
