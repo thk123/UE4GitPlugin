@@ -701,6 +701,8 @@ bool RunDumpToFile(const FString& InPathToGitBinary, const FString& InRepository
 		FString OutputString;
 		OutputString += FUTF8ToTCHAR((const ANSICHAR*)BinaryFileContent.GetData()).Get();
 
+		FPlatformProcess::ClosePipe(PipeRead, PipeWrite);
+
 		if (CheckLFSAvaliability(InPathToGitBinary) && OutputString.Contains(TEXT("git-lfs")))
 		{		
 
@@ -710,26 +712,28 @@ bool RunDumpToFile(const FString& InPathToGitBinary, const FString& InRepository
 
 			bool bSmudgeProcessFinished = false;
 
+			TArray<uint8> DataArray;
+
 			SmudgeProcess->OnOutputArray().BindLambda([&](TArray<uint8> Output) {
-				if (FFileHelper::SaveArrayToFile(Output, *InDumpFileName))
+				DataArray.Append(Output);
+			});
+
+			SmudgeProcess->OnCompleted().BindLambda([&](int32 Data, bool Successful)
+			{
+				if (!bSmudgeProcessFinished)
 				{
-					UE_LOG(LogSourceControl, Log, TEXT("Writed '%s' (%d bytes)"), *InDumpFileName, Output.Num());
+					bSmudgeProcessFinished = true;
+				}
+
+				if (FFileHelper::SaveArrayToFile(DataArray, *InDumpFileName))
+				{
+					UE_LOG(LogSourceControl, Log, TEXT("Writed '%s' (%d bytes)"), *InDumpFileName, DataArray.Num());
 					bResult = true;
 				}
 				else
 				{
 					UE_LOG(LogSourceControl, Error, TEXT("Could not write %s"), *InDumpFileName);
 				}
-
-				bSmudgeProcessFinished = true;
-			});
-
-			SmudgeProcess->OnCompleted().BindLambda([&](int32 Data, bool Successful)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Interactive Process Completed: %d %s"), Data, Successful ? TEXT("True") : TEXT("False"));
-				delete SmudgeProcess;
-
-				FPlatformProcess::ClosePipe(PipeRead, PipeWrite);
 			});
 
 			SmudgeProcess->Launch();
@@ -737,8 +741,11 @@ bool RunDumpToFile(const FString& InPathToGitBinary, const FString& InRepository
 
 			while (!bSmudgeProcessFinished)
 			{
-				FPlatformProcess::Sleep(0.01);
+				FPlatformProcess::Sleep(0.25f);
 			}
+
+			/*delete SmudgeProcess;
+			SmudgeProcess = nullptr;*/
 		}
 		else
 		{
@@ -758,8 +765,6 @@ bool RunDumpToFile(const FString& InPathToGitBinary, const FString& InRepository
 	{
 		UE_LOG(LogSourceControl, Error, TEXT("Failed to launch 'git show'"));
 	}
-
-	FPlatformProcess::ClosePipe(PipeRead, PipeWrite);
 
 	return bResult;
 }
